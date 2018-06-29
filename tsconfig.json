@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "allowUnusedLabels": false,
+    "allowJs": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "lib": [
+      "es6",
+      "es2016",
+      "dom"
+    ],
+    "typeRoots": [
+      "./typings",
+      "./node_modules/@types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "common": [
+        "./app/common"
+      ],
+      "common/*": [
+        "./app/common/*"
+      ],
+      "app/common/*": [
+        "./app/common/*"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
