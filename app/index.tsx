@@ -8,9 +8,9 @@ import { createLogger } from "redux-logger";
 import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "react-router-redux";
 
-import Hello from "./common/test";
 import rootReducer from "./rootReducer";
 import { Switch, Route } from "react-router";
+import { routes } from "./routes";
 
 const history = createBrowserHistory();
 const middleWares: any = [thunk];
@@ -25,8 +25,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route exact path="/hello" component={() => <div>H3llo World!</div>} />
-        <Route exact component={Hello} />
+        {routes.map(route => <Route key={`${route.path}`} {...route} />)}
       </Switch>
     </ConnectedRouter>
   </Provider>,
