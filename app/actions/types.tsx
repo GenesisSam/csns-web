@@ -1,0 +1,8 @@
+export enum APP_TYPES {
+  CHANGE_CURRENT_USER = "APP.CHANGE_CURRENT_USER",
+  LOGOUT = "APP.LOGOUT",
+}
+
+export enum CommonDataTypes {
+  ADD_ENTITIES = "COMMON.ADD_ENTITIES",
+}

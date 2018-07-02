@@ -1,5 +1,6 @@
 import * as React from "react";
 import Hello from "common/test";
+import SignIn from "app/signIn";
 import { RouteProps } from "react-router";
 
 interface IRouteObject extends RouteProps {
@@ -8,8 +9,8 @@ interface IRouteObject extends RouteProps {
 
 export const routes: Array<IRouteObject> = [
   {
-    path: "/hello",
-    component: () => <div>Hello world</div>,
+    path: "/signIn",
+    component: SignIn,
     exact: true,
   },
   {

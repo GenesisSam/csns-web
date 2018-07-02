@@ -8,7 +8,7 @@ import { createLogger } from "redux-logger";
 import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "react-router-redux";
 
-import rootReducer from "./rootReducer";
+import rootReducer from "./rootReducers";
 import { Switch, Route } from "react-router";
 import { routes } from "./routes";
 
@@ -24,9 +24,7 @@ const store = createStore(rootReducer, applyMiddleware(...middleWares));
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Switch>
-        {routes.map(route => <Route key={`${route.path}`} {...route} />)}
-      </Switch>
+      <Switch>{routes.map(route => <Route key={`${route.path}`} {...route} />)}</Switch>
     </ConnectedRouter>
   </Provider>,
   document.getElementById("mainContainer"),
