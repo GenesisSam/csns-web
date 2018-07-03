@@ -1,0 +1,18 @@
+{
+  "token":
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoic2F0dW5lIiwiaWF0IjoxNTMwNjI1MDQ4fQ.Ve8RCGDQu4pl_LwavhRaH_BXN7gcPg8SP21siw2DyrI",
+  "data": {
+    "uid": 1,
+    "email": "bi1179@naver.com",
+    "username": "satune",
+    "bio": "",
+    "profile_image": "images/bg02.jpg-1530301975798.jpg",
+    "confirmed": 0,
+    "level": 70,
+    "provider": "email",
+    "isExpired": 0,
+    "expired_at": null,
+    "registered_at": 1530301787,
+    "last_login_ip": null
+  }
+}

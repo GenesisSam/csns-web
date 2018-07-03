@@ -1,0 +1,13 @@
+{
+  "data": {
+    "uid": 1,
+    "email": "bi1179@naver.com",
+    "username": "satune",
+    "bio": "",
+    "profile_image": "images/bg02.jpg-1530301975798.jpg",
+    "confirmed": 0,
+    "level": 70,
+    "isExpired": 0,
+    "registered_at": 1530301787
+  }
+}
