@@ -1,17 +1,24 @@
 import * as React from "react";
 import Axios, { CancelTokenSource } from "axios";
 import { connect } from "react-redux";
-import { TextField, Button } from "@material-ui/core";
+import { withRouter, RouteComponentProps, Redirect } from "react-router";
+import { TextField, Button, CircularProgress } from "@material-ui/core";
 import Icon from "app/resources/icons";
 import PACKS from "app/resources/icons/packs";
 import { signIn } from "app/actions/users";
-import { AppDispatch } from "app/rootReducers";
+import { AppDispatch, IAppState } from "app/rootReducers";
 
 const styles = require("./signIn.scss");
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-interface IProps {
+function mapStateToProps(state: IAppState) {
+  return {
+    signInPage: state.signInPage,
+  };
+}
+
+interface IProps extends ReturnType<typeof mapStateToProps>, RouteComponentProps<any> {
   dispatch: AppDispatch;
 }
 
@@ -37,13 +44,18 @@ class SignIn extends React.PureComponent<IProps, IState> {
   }
 
   public render() {
+    const { isLoading, isSucceed } = this.props.signInPage;
     const { emailInvalid, passwordInvalid } = this.state;
-    const validToSignIn =
-      emailInvalid === undefined || emailInvalid || (passwordInvalid === undefined || passwordInvalid);
+
+    if (isSucceed) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div className={styles.wrapper}>
-        <div>
+        <div className={styles.logoWrapper}>
           <Icon icon={PACKS.GENERAL.LOGO} className={styles.logoIcon} />
+          {this.renderErrorMessage()}
         </div>
         <div>
           <TextField
@@ -53,6 +65,7 @@ class SignIn extends React.PureComponent<IProps, IState> {
             margin="normal"
             onChange={this.changeEmail}
             error={emailInvalid}
+            tabIndex={1}
           />
         </div>
         <div>
@@ -61,19 +74,35 @@ class SignIn extends React.PureComponent<IProps, IState> {
             label="Password"
             margin="normal"
             onChange={this.changePassword}
+            onKeyPress={this.handlePasswordKeyPress}
             error={passwordInvalid}
+            tabIndex={2}
           />
         </div>
-        <div>
-          <Button variant="contained" color="primary" onClick={this.doLogin} disabled={validToSignIn}>
-            Login
+        <div className={styles.buttonWrapper}>
+          <Button variant="contained" color="primary" onClick={this.doLogin} disabled={this.isInvalidToSignIn()}>
+            {isLoading ? <CircularProgress style={{ color: "white" }} size={20} /> : "Login"}
           </Button>
         </div>
       </div>
     );
   }
 
-  private changeEmail = (e: React.FormEvent<HTMLInputElement>) => {
+  private renderErrorMessage = () => {
+    const { errorMessage, isFailed } = this.props.signInPage;
+    if (!isFailed) {
+      return null;
+    }
+
+    return <span className={styles.errorMessage}>{errorMessage}</span>;
+  };
+
+  private isInvalidToSignIn = () => {
+    const { emailInvalid, passwordInvalid } = this.state;
+    return emailInvalid === undefined || emailInvalid || (passwordInvalid === undefined || passwordInvalid);
+  };
+
+  private changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
     this.setState({
       email: target.value,
@@ -81,12 +110,18 @@ class SignIn extends React.PureComponent<IProps, IState> {
     });
   };
 
-  private changePassword = (e: React.FormEvent<HTMLInputElement>) => {
+  private changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
     this.setState({
       password: target.value,
       passwordInvalid: target.value.length < 6,
     });
+  };
+
+  private handlePasswordKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key.toLocaleLowerCase() === "enter" && !this.isInvalidToSignIn()) {
+      this.doLogin();
+    }
   };
 
   private doLogin = () => {
@@ -104,4 +139,4 @@ class SignIn extends React.PureComponent<IProps, IState> {
   };
 }
 
-export default connect()(SignIn);
+export default withRouter(connect(mapStateToProps)(SignIn));

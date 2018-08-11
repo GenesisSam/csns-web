@@ -1,5 +1,5 @@
-import { AllActions } from "../actions";
-import { APP_TYPES } from "../actions/types";
+import { AllActions } from "app/actions";
+import { APP_TYPES } from "app/actions/types";
 
 export function reducer(state: number | null = null, action: AllActions): number | null {
   switch (action.type) {

@@ -1,8 +1,8 @@
 import { APP_TYPES } from "./types";
 import { Dispatch } from "redux";
 import { CancelToken } from "axios";
-import { ActionUnion } from "../common/helpers/actionHelper";
-import AuthAPI from "app/common/api/auth";
+import { ActionUnion } from "common/helpers/actionHelper";
+import AuthAPI from "common/api/auth";
 import { ActionCreators as NormalizrActionCreators } from "./normalizr";
 import { DispatchActions } from "app/rootReducers";
 
@@ -28,9 +28,12 @@ export const ActionCreators = {
     createAction({
       type: APP_TYPES.START_LOGIN,
     }),
-  failedLogin: () =>
+  failedLogin: (errorMessage: string) =>
     createAction({
       type: APP_TYPES.FAILED_LOGIN,
+      payload: {
+        errorMessage,
+      },
     }),
   succeedLogin: () =>
     createAction({
@@ -50,7 +53,8 @@ export function signIn(email: string, password: string, cancelToken: CancelToken
 
       dispatch(ActionCreators.succeedLogin());
     } catch (err) {
-      dispatch(ActionCreators.failedLogin());
+      const message = err.response ? err.response.data.error : "Failed to login";
+      dispatch(ActionCreators.failedLogin(message));
     }
   };
 }
