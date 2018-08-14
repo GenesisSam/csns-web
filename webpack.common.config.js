@@ -38,7 +38,13 @@ module.exports = {
         test: /\.js$/,
         loader: "source-map-loader",
       },
-
+      {
+        test: /\.svg$/,
+        loader: "svg-inline-loader?classPrefix",
+        options: {
+          removeTags: ["title"],
+        },
+      },
       {
         test: /\.scss$/,
         use: [
@@ -49,7 +55,7 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: true,
-              localIdentName: "[path][name]__[local]--[hash:base64:5]",
+              localIdentName: "[name]__[local]--[hash:base64:5]",
             },
           },
           {
@@ -67,9 +73,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new CheckerPlugin()
-  ],
+  plugins: [new webpack.optimize.ModuleConcatenationPlugin(), new webpack.NoEmitOnErrorsPlugin(), new CheckerPlugin()],
 };

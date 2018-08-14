@@ -5,5 +5,5 @@ export interface INormalizedData
       users: User.INormalizedList;
     }> {}
 
-export const userEntity = new schema.Entity("users", undefined, { idAttribute: "uid" });
-export const userListEntity = new schema.Array(userEntity);
+export const UserEntitySchema = new schema.Entity("users", undefined, { idAttribute: "uid" });
+export const UserListEntitySchema = new schema.Array(UserEntitySchema);

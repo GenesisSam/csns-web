@@ -9,8 +9,7 @@ import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "react-router-redux";
 
 import rootReducer from "./rootReducers";
-import { Switch, Route } from "react-router";
-import { routes } from "./routes";
+import RootWrapper from "./root";
 
 const history = createBrowserHistory();
 const middleWares: any = [thunk];
@@ -24,7 +23,7 @@ const store = createStore(rootReducer, applyMiddleware(...middleWares));
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Switch>{routes.map(route => <Route key={`${route.path}`} {...route} />)}</Switch>
+      <RootWrapper />
     </ConnectedRouter>
   </Provider>,
   document.getElementById("mainContainer"),

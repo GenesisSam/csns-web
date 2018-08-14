@@ -1,6 +1,7 @@
 import * as React from "react";
-import Hello from "common/test";
-import SignIn from "app/signIn";
+
+import SignIn from "app/pages/signIn";
+import Main from "app/pages/main";
 import { RouteProps } from "react-router";
 
 interface IRouteObject extends RouteProps {
@@ -9,12 +10,13 @@ interface IRouteObject extends RouteProps {
 
 export const routes: Array<IRouteObject> = [
   {
-    path: "/signIn",
+    path: "/signin",
     component: SignIn,
     exact: true,
   },
   {
     path: "/",
-    component: Hello,
+    component: Main,
+    exact: true,
   },
 ];
