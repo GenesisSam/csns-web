@@ -1,0 +1,21 @@
+@import "../../../root/variables";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.signin {
+  color: white;
+}
+
+.username {
+  font-size: 16px;
+  margin-right: 8px;
+  color: white;
+}
+
+.avatarImage {
+  width: 35px;
+  height: 35px;
+}

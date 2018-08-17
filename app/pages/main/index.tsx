@@ -14,7 +14,6 @@ interface IProps extends ReturnType<typeof mapStateToProps> {}
 
 class Main extends React.PureComponent<IProps> {
   public render() {
-    console.log(this.props.currentUser);
     return (
       <div>
         <Link to="signin">Go to SignIn</Link>
