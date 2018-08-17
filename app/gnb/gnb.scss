@@ -1,0 +1,33 @@
+@import "../root/variables";
+
+%basicContent {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbarWrapper {
+  width: 100%;
+  height: 50px;
+  clear: both;
+  background-color: $navBar-bg;
+  border-bottom: 3px solid $navBar-bg-dark;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  clear: both;
+  margin: 0 auto;
+  padding: 0 20%;
+}
+
+.left {
+  @extend %basicContent;
+  float: left;
+}
+
+.right {
+  @extend %basicContent;
+  float: right;
+}
