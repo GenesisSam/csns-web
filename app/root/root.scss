@@ -9,8 +9,10 @@
 .contentWrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 40px;
+  padding: 40px 280px 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 :global {

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import SignIn from "app/pages/signIn";
-import Main from "app/pages/main";
+import Main from "app/pages/mainFeed";
 import { RouteProps } from "react-router";
 
 interface IRouteObject extends RouteProps {

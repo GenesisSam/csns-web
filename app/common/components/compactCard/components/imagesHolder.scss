@@ -1,0 +1,43 @@
+@import "../../../../root/variables";
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
+.twoImages {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.moreLeft {
+  width: calc(50% - 1px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 36px;
+}
+
+img + .twoImages {
+  border-top: 1px solid white;
+}
+
+.twoImages + .twoImages {
+  border-top: 1px solid white;
+}
+
+img + img {
+  border-left: 1px solid white;
+}

@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import currentUserDenomalizer from "common/denormalizer/currentUser";
 import { IAppState } from "app/rootReducers";
-import { connect } from "react-redux";
+import CompactCard from "common/components/compactCard";
+
+const styles = require("./mainFeed.scss");
 
 function mapStateToProps(state: IAppState) {
   return {
@@ -15,9 +18,16 @@ interface IProps extends ReturnType<typeof mapStateToProps> {}
 class Main extends React.PureComponent<IProps> {
   public render() {
     return (
-      <div>
-        <Link to="signin">Go to SignIn</Link>
-        {this.props.currentUser && this.props.currentUser.username}
+      <div className={styles.container}>
+        <CompactCard testImageCount={1} />
+
+        <CompactCard testImageCount={2} />
+
+        <CompactCard testImageCount={3} />
+
+        <CompactCard testImageCount={4} />
+        <CompactCard testImageCount={5} />
+        <CompactCard testImageCount={6} />
       </div>
     );
   }

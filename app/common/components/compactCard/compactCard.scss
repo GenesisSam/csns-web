@@ -1,0 +1,32 @@
+@import "../../../root/variables";
+
+$cardWidth: 860px;
+$contentWidth: 530px;
+
+.cardWrapper {
+  display: flex;
+  width: $cardWidth;
+  height: 460px;
+  border-radius: 10px !important;
+  overflow: hidden;
+
+  &:last-of-type {
+    margin-bottom: 60px;
+  }
+}
+
+.contentWrapper {
+  width: $contentWidth;
+  height: 100%;
+}
+
+.commentArea {
+  width: $cardWidth - $contentWidth;
+  height: 100%;
+  background-color: white;
+  border-left: 1px solid $gray02;
+}
+
+.cardWrapper + .cardWrapper {
+  margin-top: 30px;
+}
